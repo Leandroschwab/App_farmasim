@@ -3,4 +3,6 @@
     <!-- Strings relacionados ao login -->
     <string name="codigo_de_usu_rio">Codigo de Usuário</string>
     <string name="senha">Senha</string>
+    <string name="erro_nomelogin">Senha</string>
+
 </resources>
