@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected Object doInBackground(Object[] objects) {
-            String msgEnviar = "login" + "-;-" + loginName + "-;-" + senha;
+            String msgEnviar = "Login" + "-;-" + loginName + "-;-" + senha;
             Log.d("myTag", msgEnviar);
             Socket socket = null;
             try {
@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
         } else if (senha.length() < 6) {
             t.setText("Senha incorreta");
         } else {
-            t.setText("Conectando...");
+            t.setText("Conectando... aguarde");
             LoginTCP task = new LoginTCP(loginName, senha);
             task.execute();
         }
