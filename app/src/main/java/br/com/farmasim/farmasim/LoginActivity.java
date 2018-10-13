@@ -34,12 +34,13 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
 
         Intent intent = getIntent();
         this.minhaLista = (HashMap<String, String>)intent.getSerializableExtra("MinhaLista");
         this.userData = (Usuario) intent.getSerializableExtra("UserData");
 
-        setContentView(R.layout.activity_login);
+        carregarLogado();
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -97,7 +98,9 @@ public class LoginActivity extends AppCompatActivity {
                     userData.senha=senha;
                     minhaLista.put("logado","True");
                     Log.d("myTag", "login: user: " + userData.user + " senha: "+ userData.senha);
-                    finish();
+
+                    carregarLogado();
+
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -123,6 +126,15 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    public void carregarLogado() {
+        Intent intent = new Intent(this, LogadoActivity.class);
+        userData.user="27543119";
+        userData.senha="iibmtz";
+        intent.putExtra("MinhaLista", minhaLista);
+        intent.putExtra("UserData", userData);
+        startActivity(intent);
+
+    }
     public void voltar(View view) throws IOException {
         String host;
         host = Manipulador.getProperty("prop.server.host", getApplicationContext()); //prop.getProperty("prop.server.host");
