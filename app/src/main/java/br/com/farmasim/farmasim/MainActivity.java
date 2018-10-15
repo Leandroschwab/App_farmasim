@@ -10,30 +10,41 @@ import android.util.Log;
 
 import java.util.*;
 
+import br.com.farmasim.farmasim._functions.Salvar;
 import br.com.farmasim.farmasim._obj.Remedio;
 import br.com.farmasim.farmasim._obj.Usuario;
 
 
 public class MainActivity extends AppCompatActivity {
-    HashMap<String, String> minhaLista = new HashMap<String, String>();
-    Usuario userData = new Usuario();
-    HashMap<String, Remedio> remedio = new HashMap<String, Remedio>();
+    Usuario userData;
+    HashMap<String, Remedio> remedio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        this.userData = Salvar.loadUsuario(getApplicationContext());
+        this.remedio = Salvar.loadRemediosHashMap(getApplicationContext());
+        Log.d("myTag","loadUsuario: finished");
+        if (userData.user!=null){
+            carregarLogado();
+        }
     }
 
     public void carregarLogin(View view) {
         Intent intent = new Intent(this, LoginActivity.class);
-
-        intent.putExtra("MinhaLista", minhaLista);
-        intent.putExtra("UserData", userData);
-
         startActivity(intent);
+
+    }
+    public void carregarLogado() {
+        Intent intent = new Intent(this, LogadoActivity.class);
+        startActivity(intent);
+
+    }
+    public void LoadDataButton(View view) {
+        userData = Salvar.loadUsuario(getApplicationContext());
+        Log.d("myTag","loadUsuario: finished");
 
     }
 }

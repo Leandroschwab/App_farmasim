@@ -21,6 +21,8 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 import br.com.farmasim.farmasim._functions.Manipulador;
+import br.com.farmasim.farmasim._functions.Salvar;
+import br.com.farmasim.farmasim._obj.Remedio;
 import br.com.farmasim.farmasim._obj.Usuario;
 
 import android.os.Handler;
@@ -29,18 +31,18 @@ public class LoginActivity extends AppCompatActivity {
     Handler handler = new Handler();
     String resultadoLogin[] = {"false", ""};
 
-    HashMap<String, String> minhaLista;
     Usuario userData;
+    HashMap<String, Remedio> remedio;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        this.userData = Salvar.loadUsuario(getApplicationContext());
+        this.remedio = Salvar.loadRemediosHashMap(getApplicationContext());
 
-        Intent intent = getIntent();
-        this.minhaLista = (HashMap<String, String>)intent.getSerializableExtra("MinhaLista");
-        this.userData = (Usuario) intent.getSerializableExtra("UserData");
 
-        carregarLogado();
+
+        //carregarLogado();
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -86,6 +88,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                 Scanner din = new Scanner(socket.getInputStream());
+                Thread.sleep(500);
                 String msgRecebida = din.nextLine();
 
                 Log.d("myTag", "Cliente: recebido do servidor o valor " + msgRecebida);
@@ -96,13 +99,15 @@ public class LoginActivity extends AppCompatActivity {
                 }else if (msgRecSplit[1].equals("SucessoLogin")){
                     userData.user=loginName;
                     userData.senha=senha;
-                    minhaLista.put("logado","True");
+                    userData.nome=msgRecSplit[2];
                     Log.d("myTag", "login: user: " + userData.user + " senha: "+ userData.senha);
-
+                    Salvar.saveUserdata(userData,getApplicationContext());
                     carregarLogado();
 
                 }
             } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             return null;
@@ -128,16 +133,10 @@ public class LoginActivity extends AppCompatActivity {
 
     public void carregarLogado() {
         Intent intent = new Intent(this, LogadoActivity.class);
-        userData.user="27543119";
-        userData.senha="iibmtz";
-        intent.putExtra("MinhaLista", minhaLista);
-        intent.putExtra("UserData", userData);
         startActivity(intent);
 
     }
-    public void voltar(View view) throws IOException {
-        String host;
-        host = Manipulador.getProperty("prop.server.host", getApplicationContext()); //prop.getProperty("prop.server.host");
-        Log.d("myTag", host);
+    public void voltar(View view){
+        finish();
     }
 }

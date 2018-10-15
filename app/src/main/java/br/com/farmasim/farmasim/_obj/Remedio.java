@@ -1,7 +1,9 @@
 package br.com.farmasim.farmasim._obj;
 
-public class Remedio{
-    String nome;
-    String cor;
-    boolean hora[] = new boolean[5];
+import java.io.Serializable;
+
+public class Remedio implements Serializable{
+    public String nome;
+    public String cor;
+    public boolean hora[] = new boolean[5];
 }

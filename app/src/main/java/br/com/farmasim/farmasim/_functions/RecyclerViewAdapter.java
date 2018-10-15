@@ -21,14 +21,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private ArrayList<String> mNomeRemedio = new ArrayList<>();
     private ArrayList<String> mHoraRemedio = new ArrayList<>();
     private ArrayList<Integer> mBola = new ArrayList<>();
-    private Context mContext;
 
     public RecyclerViewAdapter( Context mContext, ArrayList<String> mNomeRemedio, ArrayList<String> mHoraRemedio, ArrayList<Integer> mBola) {
         this.mNomeRemedio = mNomeRemedio;
         this.mHoraRemedio = mHoraRemedio;
         this.mBola = mBola;
-        this.mContext = mContext;
-    }
+        }
 
     @NonNull
     @Override
@@ -43,11 +41,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         Log.d("myTag","onBindViewHolder: called.");
         holder.nomeRemedio.setText(mNomeRemedio.get(position));
-        Log.d("myTag","onBindViewHolder: nomeRemedio.");
         holder.horaRemedio.setText(mHoraRemedio.get(position));
-        Log.d("myTag","onBindViewHolder: horaRemedio.");
         holder.bola.setCardBackgroundColor(mBola.get(position));
-        Log.d("myTag","onBindViewHolder: finished.");
     }
 
     @Override
