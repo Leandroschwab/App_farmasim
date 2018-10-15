@@ -72,7 +72,9 @@ public class LogadoActivity extends AppCompatActivity {
     private void initNomes(){
         Log.d("myTag","initNomes: started.");
         Log.d("myTag","qt remeido"+ userData.Qtderemedios);
-
+        mHoraRemedio = new ArrayList<>();
+        mBola = new ArrayList<>();
+        mNomeRemedio =  new ArrayList<>();
         for (int i=0;i<userData.Qtderemedios;i++){
 
             Remedio rem = remedio.get(String.valueOf(i));

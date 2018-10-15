@@ -32,6 +32,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void clearData(View view) {
+        Log.d("myTag","clearData: started");
+        Salvar.clearData(getApplicationContext());
+        Log.d("myTag","clearData: finish");
+    }
     public void carregarLogin(View view) {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);

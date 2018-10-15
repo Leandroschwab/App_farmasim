@@ -17,7 +17,6 @@
         android:hint="@string/codigo_de_usu_rio"
         android:inputType="number"
         android:maxLength="8"
-        android:text="27543119"
         app:layout_constraintBottom_toTopOf="@+id/senha_CX"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -33,7 +32,6 @@
         android:hint="@string/senha"
         android:inputType="textPassword"
         android:maxLength="6"
-        android:text="iibmtz"
         app:layout_constraintBottom_toTopOf="@+id/button_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
