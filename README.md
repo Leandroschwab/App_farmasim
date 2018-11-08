@@ -1,9 +1,4 @@
 # App_farmasim
-# web_farmasim 
-
-Demonstração http://farmasim.esy.es/ 
-
-  
 
 **Sobre:** 
 
